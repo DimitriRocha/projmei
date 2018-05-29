@@ -30,6 +30,7 @@
         if(password_verify($upass, $userRow['user_pass']))
         {
           $_SESSION['user'] = $userRow['user_id'];
+          $_SESSION['userName'] = $userRow['user_name'];
           return true;
         }
         else{
@@ -163,6 +164,7 @@ public function userCnpj(){
     }
   }
 
+
 /**
  * ALTERAR ÁREAS DE CONTRATO
  */
@@ -188,6 +190,7 @@ public function userCnpj(){
 
         if(password_verify($cpass, $conRow['con_pass'])){
           $_SESSION['consultor'] = $conRow['con_id'];
+          $_SESSION['consultorNome'] = $conRow['con_name'];
           return true;
         }
         else{

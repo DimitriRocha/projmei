@@ -11,7 +11,7 @@ try{
     $DB_con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e){
-    echo $e->getMessage();
+    //echo $e->getMessage();
 }
 
 include '_class/loginT.php';

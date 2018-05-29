@@ -3,8 +3,12 @@
 	require_once '_class/conexao.php';
 
 	if($login->islogin()){
-    header('location: chat.php');
-  }
+        header('location: chat.php');
+    }
+
+    echo '<pre>';
+    echo password_hash('123456', PASSWORD_DEFAULT);
+    echo '</pre>';
 
 	if(isset($_POST['btn-enviar'])){
     

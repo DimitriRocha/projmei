@@ -1,5 +1,4 @@
 <?php
-
 	try {
    		$myPDO = new PDO('mysql:host=localhost; dbname=dblogin', 'root', '');
 	    $dbh = null;

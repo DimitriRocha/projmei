@@ -1,5 +1,4 @@
 <?php 
-	require_once '_ref/header.php';
 	require_once '_class/conexao.php';
 
 	if(isset($_POST['bt_enviar'])){
@@ -8,15 +7,14 @@
 		$upass = $_POST['pass'];
 
 		if($login->logincon($ulog, $upass)){
-			header('location: chatConsultor.php');
+			header('location: inicioConsultor.php');
 		}
 		else{
-		?>
-				
-			<script type="text/javascript">alert('A senha ou usuário estão incorretos, tente novamente!');</script>
-		<?php
+			echo("<script type='text/javascript'>alert('A senha ou usuário estão incorretos, tente novamente!')</script>");
 		}
 	}
+
+	require_once '_ref/header.php';
  ?>
 
 <section class="col-xs-12" id="entrar_container">

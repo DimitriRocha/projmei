@@ -17,21 +17,21 @@ function updateScroll() {
 }
 
 function reloadDiv(){
-    $( "#control-div" ).load(window.location.href + " #control-div" );
-      
+    $( "#control-div" ).load(window.location.href + " #control-div");
+
     $( "#alertUpdt" ).fadeIn(1000);
 
     setTimeout(function(){
       $( "#alertUpdt" ).fadeOut(1000);
     }, 2000);
 
-    
 
-    
+
+
 }
 
 function showAlert(){
-  
+
 }
 
 function alertCharNumber(charNum){
@@ -43,4 +43,8 @@ function alertCharNumber(charNum){
 function makeFade(){
   $('#alertUpdt').delay(2000).fadeOut(400);
   console.log('Alert will fade')
+}
+
+function mudarTextBtnCaso(value){
+  console.log(value);
 }

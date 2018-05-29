@@ -1,17 +1,15 @@
 <?php 
+	$assinaturaId = $_GET['id'];
+
 	include ('_class/conexao.php');
 	include('_class/chatClasses.php');
 
 	$chatClasse = new ChatClass;
-
-	if (!$login->islogin()) { //Caso o usuário não esteja logado
-	 	header('Location: entrar.php'); //Redireciona ele para a pagina de login
+	
+	if (!$login->islogincon() || !$chatClasse->casoAberto($assinaturaId)) {
+	 	header('Location: logout.php');
 	}
 
-	if(isset($_POST['bt-abrir'])){
-		$val= $_POST['check'];
-		$chatClasse->abrirnovocaso($val);
-	}
 ?>
 
 <!DOCTYPE html>
@@ -33,45 +31,22 @@
 	<div id="container-master">
 		<div id="container-menu">
 			<h3>Menu</h3>
-			<form method="post">
-				<div class="radio disabled">
-					<label><input type="radio" name="check" value="1" disabled>Fiscal</label>
-				</div>
-				<div class="radio">	
-					<label><input type="radio" name="check" value="2">ADM</label>
-				</div>
-				<div class="radio">	
-					<label><input type="radio" name="check" value="3">RH</label>
-				</div>	
-				<div class="radio">	
-					<label><input type="radio" name="check" value="4">Juridico</label>
-				</div>	
-				<div class="radio">	
-					<label><input type="radio" name="check" value="5">Marketing</label>
-				</div>	
-				<div class="radio">	
-					<label><input type="radio" name="check" value="6">Financeiro</label>
-				</div>
-				<button class="btn btn-primary" type="submit" name="bt-abrir">Abrir Um Caso</button><br><br>
-				<a href="perfil.php" class="btn btn-primary">Perfil</a>
-			</form>
-
-			<a href="entrarConsultor.php"><button id="logout-button">SAIR</button></a>
+			<a href="inicioConsultor.php"><button class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</button></a>
+			<a href="logout.php"><button id="logout-button">SAIR</button></a>
 		</div>
-
 		<div id="container-chat">
 			<div class="col-sm-11" id="chat-box" >
 				<div id="control-div" >
 					<?php 
 						//Chama a função showTextOnScreen() para que o texto possa ser enviado e encapsulado em divs
-						$chatClasse->showConsultorTextOnScreen($_SESSION['user']);
+						$chatClasse->showConsultorTextOnScreen($assinaturaId);
 	    			?>
 	    		</div>
 			</div>
 			<span class="col-xs-11">
 				<form class="" class="" method="post" action="">
 					<div class="col-sm-9">
-						<input class="form-control" id="chat-send" type="text" name="sendText" onkeyup="countChar(this)">
+						<input class="form-control" id="chat-send" type="text" name="sendText" onkeyup="countChar(this)" autocomplete="off">
 					</div> 
 					<div class="btn-group col-sm-3" role="group" aria-label="...">
 						<button class="btn btn-primary col-sm-6" type="submit" name="submit" onclick="">Enviar</button>
@@ -82,7 +57,7 @@
 					//Verifica se o botão foi clicado e envia oque está na caixa para a função insertText() que está em chatClasses.php
 					if(isset($_POST['submit']) && isset($_POST['sendText'])) {
 						$txt = $_POST['sendText'];
-						$chatClasse->insertConsultorText($txt, 13);
+						$chatClasse->insertConsultorText($txt, $assinaturaId);
 					}
 					if(isset($_POST['submit']) && isset($_POST['sendText'])){
 												

@@ -1,22 +1,23 @@
 <?php 
-	require_once '_ref/header.php';
 	require_once '_class/conexao.php';
-
 	if(isset($_POST['bt_enviar'])){
-
 		$ulog  = $_POST['login'];
 		$upass = $_POST['pass'];
 
-		if($login->login($ulog, $upass)){
-			header('location: chatIndex.php');
+		if($login->login($ulog, $upass)){ 
+		?>
+			<script>document.location.href='chatIndex.php'</script>
+		<?php
 		}
+
 		else{
 		?>
-				
 			<script type="text/javascript">alert('A senha ou usuário estão incorretos, tente novamente!');</script>
 		<?php
 		}
 	}
+
+	require_once '_ref/header.php';
  ?>
 
 <section class="col-xs-12" id="entrar_container">
@@ -33,6 +34,7 @@
  		<button type="submit" name="bt_enviar">Enviar</button>
 
  		<a href="cadastro.php"><p>Não é cadastrado? CADASTRE-SE AQUI</p></a>
+ 		<a href="entrarConsultor.php"><p>É um consultor? Entre aqui</p></a>
  	</form>
  </div>
 </section>
