@@ -1,6 +1,5 @@
 ////////////// Onde parei? ////////////////
 
--O chat está abrindo casos mas não o está permitindo colocar informações no banco de dados.
 -Mudei a variável assId para um elemento da $_SESSION[] para que ela se torne global e com essa variável global posso manter o caso aberto
 -Criei uma variável $_SESSION['hasOpenCase'] para ver se o caso está aberto e forçar o usuário a fechar o caso antes de sair
 -Os botões de submit todos estão atualizando a pagina. é necessário um preventDefault() neles

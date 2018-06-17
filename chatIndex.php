@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	/* TO DO
 		* Colocar um campo no banco que informe se a pessoa tem acesso a um certo campo
 		* Após fazer tudo funcionar criar os planos
@@ -40,7 +39,7 @@
 			$marketing = '';
 			$financeiro = '';
 			break;
-		
+
 		case '2':
 			$fiscal = '';
 			$adm = 'checked';
@@ -58,7 +57,7 @@
 			$marketing = '';
 			$financeiro = '';
 			break;
-			
+
 		case '4':
 			$fiscal = '';
 			$adm = '';
@@ -67,7 +66,7 @@
 			$marketing = '';
 			$financeiro = '';
 			break;
-			
+
 		case '5':
 			$fiscal = '';
 			$adm = '';
@@ -76,7 +75,7 @@
 			$marketing = 'checked';
 			$financeiro = '';
 			break;
-			
+
 		case '6':
 			$fiscal = '';
 			$adm = '';
@@ -84,7 +83,7 @@
 			$juridico = '';
 			$marketing = '';
 			$financeiro = 'checked';
-			break;				
+			break;
 
 		default:
 			// code...

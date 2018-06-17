@@ -69,7 +69,7 @@
 			include('conection.php');
 
 			try{
-				$stmt= $myPDO->prepare('INSERT INTO caso(user_id, ed_id, ass_start) VALUES (:uid, :area,:start');
+				$stmt= $myPDO->prepare('INSERT INTO caso(user_id, ed_id, ass_start) VALUES (:uid, :area,:start)');
 
 				$date=date('y-m-d');
 				$stmt->bindparam(":uid", $_SESSION['user']);
@@ -158,7 +158,7 @@
 				include('conection.php');
 				$stmt = $myPDO->prepare('INSERT INTO caso (user_id, ed_id, ass_start) VALUES (:user_id, :ed_id, now())');
 				$stmt->bindparam(":user_id", $userId);
-				$stmt->bindparam(":ed_id", $area); 
+				$stmt->bindparam(":ed_id", $area);
 				$stmt->execute();
 
 			}catch(Exception $err){
@@ -169,7 +169,7 @@
 		public function casoAberto($caso){
 				include('conection.php');
 				$stmt = $myPDO->prepare('SELECT status FROM caso WHERE ass_id = :ass_id');
-				$stmt->bindparam(":ass_id", $caso); 
+				$stmt->bindparam(":ass_id", $caso);
 				$stmt->execute();
 
 				$casoStatus = $stmt->fetch(PDO::FETCH_ASSOC);

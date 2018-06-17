@@ -6,7 +6,7 @@
 
 		if($login->login($ulog, $upass)){ 
 		?>
-			<script>document.location.href='chatIndex.php'</script>
+			<script>document.location.href='inicioUser.php'</script>
 		<?php
 		}
 
