@@ -67,7 +67,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">CONFIGURAÇÕES</li>
 							<li class="divider"></li>
-							<li><a href="logout.php">Logout</a></li>
+							<li><a href="logout">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -88,7 +88,7 @@
 					<li id="meus-casos-btn" class="btn-selector"><a href="#"><span class="glyphicon glyphicon-align-justify"></span> Meus casos</a></li>
 					<li id="perfil-btn" class="btn-selector"><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
 					<li>
-						<a href="logout.php">
+						<a href="logout">
 							<span class="glyphicon glyphicon-circle-arrow-left"></span><span> Sair</span>
 						</a>
 					</li>
@@ -190,7 +190,7 @@
 				      <td><?php echo ucfirst($caso['nome_status']) ?></td>
 				      <td>
 				      	<?php if($caso['status'] == 0): ?>
-				      	<a class="abrirChat" title="Abrir chat" href="chatConsultor.php?id=<?php echo $caso['ass_id'] ?>">
+				      	<a class="abrirChat" title="Abrir chat" href="chatConsultor?id=<?php echo $caso['ass_id'] ?>">
 				      		<i class="glyphicon glyphicon-comment"></i>
 				      	</a>
 				      	<a 

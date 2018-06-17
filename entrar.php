@@ -6,7 +6,7 @@
 
 		if($login->login($ulog, $upass)){ 
 		?>
-			<script>document.location.href='inicioUser.php'</script>
+			<script>document.location.href='inicioUser'</script>
 		<?php
 		}
 
@@ -29,12 +29,12 @@
 
  		<input required="Ponha sua senha" type="password" name="pass" placeholder="Senha"><br>
  		
- 		<a href="recover.php"><p>Esqueceu a senha</p></a>
+ 		<a href="recover"><p>Esqueceu a senha</p></a>
  		 		
  		<button type="submit" name="bt_enviar">Enviar</button>
 
- 		<a href="cadastro.php"><p>Não é cadastrado? CADASTRE-SE AQUI</p></a>
- 		<a href="entrarConsultor.php"><p>É um consultor? Entre aqui</p></a>
+ 		<a href="cadastro"><p>Não é cadastrado? CADASTRE-SE AQUI</p></a>
+ 		<a href="entrarConsultor"><p>É um consultor? Entre aqui</p></a>
  	</form>
  </div>
 </section>

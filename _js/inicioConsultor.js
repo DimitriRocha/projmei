@@ -58,12 +58,12 @@ $( document ).ready(function() {
 
 
 ///////////////////////////////////////////////////
-  $(".atribuirConsultor").click(function(){
+  $(".atribuirConsultor").click(function(e){
     var assId = parseInt($(this).attr("ass-id"));
    // alert(postData);
    var myData={"con_id":consultorId, "ass_id":assId};
    $.ajax({
-      url : "_recursos/atribuirCaso.php",
+      url : "_recursos/atribuirCaso",
       type: "POST",
       data : myData,
       success: function(data,status,xhr){

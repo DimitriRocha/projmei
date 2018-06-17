@@ -9,7 +9,7 @@
 
 		}
 
-		function showTextOnScreen($user , $assId)
+		function getMessages($user , $assId)
 		{
 			include('conection.php');
 
@@ -22,26 +22,11 @@
 									");
 			$sth->bindparam(":assId", $assId);
 
-			$cmp1 = $myPDO->prepare("SELECT msg_txt FROM msg WHERE ass_id = (:assId) ORDER BY hms DESC");
-			$cmp1->bindparam(":assId", $assId);
-
-			$cmp2 = $myPDO->prepare("SELECT res_txt FROM resposta WHERE ass_id = (:assId) ORDER BY hms DESC");
-			$cmp2->bindparam(":assId", $assId);
-
 			$sth->execute();
-			$cmp1->execute();
-			$cmp2->execute();
 
-			while($result = $sth->fetch(PDO::FETCH_ASSOC) ){
+			$result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-				if ($result['tipo'] == 0) {
-					//echo $user;
-					echo '<div class="msg cliente">' . $result['msg_txt'] .'</div>';
-				}else if ($result['tipo'] == 1) {
-					echo '<div class="msg consultor">' . $result['msg_txt'] . '</div>';
-				}
-
-			}
+			return $result;
 		}
 
 		function insertText($txt, $case)

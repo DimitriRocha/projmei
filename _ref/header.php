@@ -31,19 +31,19 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span> 
 		      </button>
-		      <a class="navbar-brand" href="index.php">
+		      <a class="navbar-brand" href="index">
 		      	<img src="_img/logo.png" alt="Logo da empresa">
 		      </a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li><a href="index.php">HOME</a></li>
+		        <li><a href="index">HOME</a></li>
 		        <li><a href="#nossa-empresa">NOSSA EMPRESA</a></li>
 		        <li><a href="#novidades">NOVIDADES</a></li> 
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="cadastro.php"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
-		        <li><a href="entrar.php"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+		        <li><a href="cadastro"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
+		        <li><a href="entrar"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
 		      </ul>
 		    </div>
 		  </div>

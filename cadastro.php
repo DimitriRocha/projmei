@@ -3,7 +3,7 @@
 	require_once '_class/conexao.php';
 
 	if($login->islogin()){
-        header('location: chat.php');
+        header('location: chatIndex');
     }
 
     echo '<pre>';

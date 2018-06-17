@@ -7,7 +7,7 @@
 		$upass = $_POST['pass'];
 
 		if($login->logincon($ulog, $upass)){
-			header('location: inicioConsultor.php');
+			header('location: inicioConsultor');
 		}
 		else{
 			echo("<script type='text/javascript'>alert('A senha ou usuário estão incorretos, tente novamente!')</script>");
@@ -26,11 +26,11 @@
 
  		<input required="Ponha sua senha" type="password" name="pass" placeholder="Senha"><br>
  		
- 		<a href="recover.php"><p>Esqueceu a senha</p></a>
+ 		<a href="recover"><p>Esqueceu a senha</p></a>
  		 		
  		<button type="submit" name="bt_enviar">Enviar</button>
 
- 		<a href="cadas.con.php"><p>Não é cadastrado? CADASTRE-SE AQUI</p></a>
+ 		<a href="cadas.con"><p>Não é cadastrado? CADASTRE-SE AQUI</p></a>
  	</form>
  </div>
 </section>

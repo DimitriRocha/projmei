@@ -25,6 +25,7 @@
 	<link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="theme-color" content="#000000">
 	<!-- FIM DOS FAVICONS -->
+	<title>Inicio - Consultoria MEI</title>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -62,7 +63,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">CONFIGURAÇÕES</li>
 							<li class="divider"></li>
-							<li><a href="logout.php">Logout</a></li>
+							<li><a href="logout">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -83,7 +84,7 @@
 					<li id="meus-casos-btn" class="btn-selector"><a href="#"><span class="glyphicon glyphicon-align-justify"></span> Meus casos</a></li>
 					<li id="perfil-btn" class="btn-selector"><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
 					<li>
-						<a href="logout.php">
+						<a href="logout">
 							<span class="glyphicon glyphicon-circle-arrow-left"></span><span> Sair</span>
 						</a>
 					</li>
@@ -148,7 +149,11 @@
 									?>
 								</td>  
 								<td><?php echo $caso['status'] == 0 ? "Aberto" : "Fechado"; ?></td>
-								<td><a href=""><i class="glyphicon glyphicon-comment"></i></a></td>  
+								<td>
+									<a href="chatIndex?id=<?php echo $caso['ass_id'] ?>">
+										<i class="glyphicon glyphicon-comment"></i>
+									</a>
+								</td>  
 							</tr>
 						<?php endif; ?>
 					<?php endforeach; ?>
