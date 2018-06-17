@@ -17,12 +17,19 @@
 </script>
 
 <head>
+	<!-- FAVICONS -->
+	<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+	<link rel="manifest" href="favicons/manifest.json">
+	<link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#000000">
+	<!-- FIM DOS FAVICONS -->
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="_js/inicioUser.js"></script>
 	<link rel="stylesheet" href="_css/inicioConsultor.css">
-
 </head>
 <body>
 	
@@ -90,6 +97,18 @@
 
 <div id="inicialContent" class="contentWrapper">
 	<div class="col-md-10 content">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<b>Visão Geral</b>
+			</div>
+			<div class="panel-body">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="meusCasos" class="contentWrapper">
+	<div class="col-md-10 content">
 		<?php foreach($dash::areas as $key => $area): ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -101,21 +120,35 @@
 					<thead>
 						<th>Id</th>
 						<th>Atribuido</th>
-						<th>Ultima mensagem</th>
 						<th>Data de abertura</th>
 						<th>Data de fechamento</th>
 						<th>Status</th>
+						<th>Ações</th>
 					</thead>
 					<tbody>
 					<?php foreach($casos as $caso): ?>
 						<?php if(isset($caso['ed_id']) && $caso['ed_id'] == $key): ?>
 							<tr>
 								<td><?php echo $caso['ass_id'] ?></td>  
-								<td><?php echo ($caso['con_id'] != null ? "Sim" : "Não"); ?></td>  
-								<td><?php echo $caso['ass_id'] ?></td>  
-								<td><?php echo $caso['ass_id'] ?></td>  
-								<td><?php echo $caso['ass_id'] ?></td>  
-								<td><?php echo $caso['ass_id'] ?></td>  
+								<td><?php echo ($caso['con_id'] != null ? '<i class="glyphicon glyphicon-ok"></i>' : '<i class="glyphicon glyphicon-remove"></i>'); ?></td>  
+								<td>
+									<?php
+									$dateStart = new DateTime($caso['ass_start'] );
+									echo date_format($dateStart, 'H:i d/m/Y');
+									?>
+								</td>  
+								<td>
+									<?php 
+									if(isset($caso['ass_end']) && $caso['ass_end'] != null){
+										$dateFim = new DateTime($caso['ass_end']);
+										echo date_format($dateFim, 'H:i d/m/Y');
+									}else{
+										echo '---';
+									}
+									?>
+								</td>  
+								<td><?php echo $caso['status'] == 0 ? "Aberto" : "Fechado"; ?></td>
+								<td><a href=""><i class="glyphicon glyphicon-comment"></i></a></td>  
 							</tr>
 						<?php endif; ?>
 					<?php endforeach; ?>
@@ -124,25 +157,6 @@
 			</div>
 		</div>
 		<?php endforeach; ?>
-	</div>
-</div>
-
-<div id="meusCasos" class="contentWrapper">
-	<div class="col-md-10 content">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<b>Meus casos</b>
-			</div>
-			<div class="panel-body">
-				<table class="table">
-				  <thead>
-				   
-				  </thead>
-				  <tbody>
-				  	
-				  </tbody>
-				</table>
-			</div>
 		</div>
 	</div>
 </div>

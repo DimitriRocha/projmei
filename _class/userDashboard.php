@@ -12,7 +12,7 @@ class UserDashboard{
 	function getCasosAbertos(){
 		include 'conection.php';
 
-		$stmt = $myPDO->prepare('SELECT * FROM caso WHERE user_id = :user_id');
+		$stmt = $myPDO->prepare('SELECT * FROM caso WHERE user_id = :user_id ORDER BY ass_start DESC');
 		$stmt->bindparam(":user_id", $this->id);
 		$stmt->execute();
 		$casos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,13 +28,21 @@ class UserDashboard{
 		$stmt->execute();
 
 		$casos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		$stmt2 = $myPDO->prepare('SELECT * FROM caso WHERE user_id = :user_id');
-		$stmt2->bindparam(":user_id", $this->id);
-		$stmt2->execute();
-
 		
-		var_dump($casos);
-		die();
+		foreach($casos as $caso){
+			$assId = $caso['ass_id'];
+			$stmt2 = $myPDO->prepare('SELECT * FROM msg WHERE ass_id = :ass_id ORDER BY hms DESC LIMIT 1');
+			$stmt2->bindparam(":ass_id", $assId);
+			$stmt2->execute();
+
+			$msgs[$assId] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+			$msgs[$assId] = $msgs[$assId][0];
+		}
+
+		// echo '<pre>';
+		// print_r($msgs);
+		// echo '</pre>';
+		// die();
+		return $msgs;
 	}
 }
