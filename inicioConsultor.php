@@ -34,7 +34,6 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="_js/inicioConsultor.js"></script>
 	<link rel="stylesheet" href="_css/inicioConsultor.css">
-
 </head>
 <body>
 	

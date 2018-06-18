@@ -26,7 +26,7 @@ $( document ).ready(function() {
     e.preventDefault();
     var assId = $('#msgAssId').val();
     var txt = $('#textInput').val();
-    var myData={"texto":txt, "ass_id":assId, "tipo":0};
+    var myData={"texto":txt, "ass_id":assId, "tipo":tipo};
     if(txt != null && txt != ""){
       $.ajax({
         url : "_recursos/enviarTextoChat",
@@ -35,6 +35,8 @@ $( document ).ready(function() {
         success: function(data,status,xhr){
           $('#textInput').val('');
           $( "#control-div" ).load(window.location.href + " #control-div");
+          var element = document.getElementById("chat-box");
+          element.scrollTop = element.scrollHeight;
           // console.log(data);
           // console.log(status);
         },
@@ -45,8 +47,6 @@ $( document ).ready(function() {
       }); 
     }
   }); 
-
-
 
 });
 
@@ -74,14 +74,10 @@ function reloadDiv(){
 
     setTimeout(function(){
       $( "#alertUpdt" ).fadeOut(1000);
-    }, 2000);
+}, 2000);
 
 
 
-
-}
-
-function showAlert(){
 
 }
 
@@ -95,8 +91,3 @@ function makeFade(){
   $('#alertUpdt').delay(2000).fadeOut(400);
   console.log('Alert will fade')
 }
-
-function mudarTextBtnCaso(value){
-  console.log(value);
-}
-

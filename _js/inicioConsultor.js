@@ -57,7 +57,6 @@ $( document ).ready(function() {
     });
 
 
-///////////////////////////////////////////////////
   $(".atribuirConsultor").click(function(e){
     var assId = parseInt($(this).attr("ass-id"));
    // alert(postData);
@@ -86,7 +85,7 @@ $( document ).ready(function() {
         console.log(status);
         console.log(xhr);
       }   
-      }); 
+    }); 
   });
 
 });

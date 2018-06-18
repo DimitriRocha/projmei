@@ -1,6 +1,19 @@
-////////////// Onde parei? ////////////////
+////////////// TO-DO ////////////////
 
--Mudei a variável assId para um elemento da $_SESSION[] para que ela se torne global e com essa variável global posso manter o caso aberto
--Criei uma variável $_SESSION['hasOpenCase'] para ver se o caso está aberto e forçar o usuário a fechar o caso antes de sair
--Os botões de submit todos estão atualizando a pagina. é necessário um preventDefault() neles
--Os botões de radio vão ter uma variável em php que informa se eles estão abertos, para que o valor deles não fique zerando
+Adicionar informações do usuário na aba lateral do chat do consultor
+
+Adicionar informações do caso aberto pelo usuário na aba lateral
+
+Adicionar opção de abrir caso para o usuário(Verificar onde no layout isso se encaixa)
+
+Na visão geral do usuário adicionar a área da proposta
+
+Adicionar a opção pelo usuário de dar um título ao caso e esse
+seria exposto nos dashboards para facilitar busca
+
+Adicionar aba administrativa
+-Apenas administrador pode adicionar consultor
+-Ele pode ver informações tanto de clientes como consultores
+-Ele pode apagar mensagens e editar textos?
+
+Adicionar push notification para casos que não foram visualizados

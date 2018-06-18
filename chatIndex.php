@@ -8,13 +8,13 @@
 	 	header('Location: entrar.php'); //Redireciona ele para a pagina de login
 	}
 
-	// $_SESSION['userAssId'] = $chatClasse->buscarAssId($_SESSION['user'] , $_SESSION['casoCheck']);
 	$_SESSION['userAssId'] = intval($_GET['id']);
 	$msgs = $chatClasse->getMessages($_SESSION['user'], $_SESSION['userAssId']);
-	// echo '<pre>';
-	// print_r($msgs);
-	// echo '<pre>';
-	// die();
+
+	if(!$chatClasse->validateUserByAssId($_SESSION['user'], $_SESSION['userAssId'])){
+		header('Location: userDashboard');
+	}
+	echo '<script>var tipo = 0</script>';
 ?>
 
 <!DOCTYPE html>
@@ -43,20 +43,20 @@
 	<div id="container-master">
 		<div id="container-menu">
 			<h3>Menu</h3>
-			<a href="logout.php"><button id="logout-button">SAIR</button></a>
+			<a href="inicioUser"><button id="logout-button">VOLTAR</button></a>
 		</div>
 
 		<form id="mensagens" action="">
-		<div id="container-chat">
-			<div class="col-sm-11" id="chat-box" >
-				<div id="control-div" >
-					<?php foreach($msgs as $key => $msg): ?>
-						<div class="msg <?php echo $msg['tipo'] == 0 ? "cliente" : "consultor" ?>">
-							<?php echo $msg['msg_txt'] ?>
-						</div>
-					<?php endforeach; ?>
-	    		</div>
-			</div>
+			<div id="container-chat">
+				<div class="col-sm-11" id="chat-box" >
+					<div id="control-div" >
+						<?php foreach($msgs as $key => $msg): ?>
+							<div class="msg <?php echo $msg['tipo'] == 0 ? "cliente" : "consultor" ?>">
+								<?php echo $msg['msg_txt'] ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
 				<span class="col-xs-11">
 					<div class="col-sm-9">
 						<input id="msgAssId" class="form-control" type="hidden" name="assId" value="<?php echo  $_SESSION['userAssId']; ?>">
@@ -67,8 +67,8 @@
 						<button class="btn btn-basic col-sm-6" type="button" name="bt-updateTextBox" onclick="reloadDiv()">Atualizar</button>
 					</div>
 				</span>
-		</div>
-			</form>
+			</div>
+		</form>
 	</div>
 
 

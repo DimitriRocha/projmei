@@ -4,8 +4,6 @@
 	include '_class/userDashboard.php';
 
 	if (!$login->islogin()) { //Caso o usuário não esteja logado
-		print_r('Hello old pal');
-		die();
 	 	header('Location: entrar.php'); //Redireciona ele para a pagina de login
 	}
 	$dash = new UserDashboard($_SESSION['user']);
@@ -105,6 +103,53 @@
 			<div class="panel-body">
 			</div>
 		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<b>Casos ativos</b>
+			</div>
+			<div class="panel-body">
+			<table class="table">
+				<thead>
+					<th>Id</th>
+					<th>Atribuido</th>
+					<th>Data de abertura</th>
+					<th>Data da ultima mensagem</th>
+					<th>Status</th>
+					<th>Ações</th>
+				</thead>
+				<tbody>
+				<?php foreach($casos as $caso): ?>
+					<?php if($caso['status'] == 0): ?>
+					<tr>
+						<td><?php echo $caso['ass_id'] ?></td>  
+						<td><?php echo ($caso['con_id'] != null ? '<i class="glyphicon glyphicon-ok"></i>' : '<i class="glyphicon glyphicon-remove"></i>'); ?></td>  
+						<td>
+							<?php
+							$dateStart = new DateTime($caso['ass_start'] );
+							echo date_format($dateStart, 'H:i d/m/Y');
+							?>
+						</td>  
+						<td>
+							<?php 
+							$dateLastMsg = new DateTime($lastMessage[$caso['ass_id']]['hms']);
+							echo date_format($dateLastMsg, 'H:i d/m/Y');
+							?>
+						</td>  
+						<td><?php echo $caso['status'] == 0 ? "Aberto" : "Fechado"; ?></td>
+						<td>
+						<?php if($caso['status'] == 0): ?>
+							<a href="chatIndex?id=<?php echo $caso['ass_id'] ?>" target="_blank">
+								<i class="glyphicon glyphicon-comment"></i>
+							</a>
+						<?php endif; ?>
+						</td>  
+					</tr>
+					<?php endif; ?>
+				<?php endforeach; ?>
+				</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -150,9 +195,11 @@
 								</td>  
 								<td><?php echo $caso['status'] == 0 ? "Aberto" : "Fechado"; ?></td>
 								<td>
-									<a href="chatIndex?id=<?php echo $caso['ass_id'] ?>">
+								<?php if($caso['status'] == 0): ?>
+									<a href="chatIndex?id=<?php echo $caso['ass_id'] ?>" target="_blank">
 										<i class="glyphicon glyphicon-comment"></i>
 									</a>
+								<?php endif; ?>
 								</td>  
 							</tr>
 						<?php endif; ?>

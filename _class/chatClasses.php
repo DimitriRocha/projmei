@@ -45,10 +45,6 @@
 			}
 		}
 
-		function emptyPostCache(){
-			unset($_POST['sendText']);
-		}
-
 		function abrirCaso($area)
 		{
 			include('conection.php');
@@ -68,37 +64,6 @@
 	      		echo $e->getMessage();
 	      		echo 'CONSULTE A ASSISTÊNCIA';
 	    	}
-		}
-
-		function showConsultorTextOnScreen($ass_id)
-		{
-			include('conection.php');
-
-			$sth = 	$myPDO->prepare("SELECT * FROM
-										(SELECT msg_txt,tipo,hms FROM msg WHERE ass_id = :ass_id ORDER BY hms DESC) AS a
-									UNION
-									SELECT * FROM
-										(SELECT res_txt,tipo,hms FROM resposta WHERE ass_id = :ass_id ORDER BY hms DESC) AS b
-								    ORDER BY hms
-									");
-			$cmp1 = $myPDO->prepare("SELECT msg_txt FROM msg WHERE ass_id = :ass_id ORDER BY hms DESC");
-			$cmp2 = $myPDO->prepare("SELECT res_txt FROM resposta WHERE ass_id = :ass_id ORDER BY hms DESC");
-
-			$sth->bindparam(":ass_id", $ass_id);
-			$cmp1->bindparam(":ass_id", $ass_id);
-			$cmp2->bindparam(":ass_id", $ass_id);
-
-			$sth->execute();
-			$cmp1->execute();
-			$cmp2->execute();
-
-			while($result = $sth->fetch(PDO::FETCH_ASSOC) ){
-				if ($result['tipo'] == 1) {
-					echo '<div class="msg cliente">' . $result['msg_txt'] .'</div>';
-				}else if ($result['tipo'] == 0) {
-					echo '<div class="msg consultor">' . $result['msg_txt'] . '</div>';
-				}
-			}
 		}
 
 		function insertConsultorText($txt, $case)
@@ -163,6 +128,21 @@
 				}else {
 					return false;
 				}
+		}
+
+		public function validateUserByAssId($user, $assId){
+			include('conection.php');
+			$stmt = $myPDO->prepare('SELECT * FROM caso WHERE ass_id = :assId');
+			$stmt->bindparam('assId', $assId);
+			$stmt->execute();
+
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			if($result['user_id'] == $user){
+				return true;
+			}else {
+				return false;
+			}
 		}
 
 	}

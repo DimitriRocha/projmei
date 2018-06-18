@@ -1,15 +1,16 @@
 <?php 
-	$assinaturaId = $_GET['id'];
+$assinaturaId = $_GET['id'];
+include('_class/conexao.php');
+include('_class/chatClasses.php');
 
-	include ('_class/conexao.php');
-	include('_class/chatClasses.php');
+$chatClasse = new ChatClass;
 
-	$chatClasse = new ChatClass;
-	
-	if (!$login->islogincon() || !$chatClasse->casoAberto($assinaturaId)) {
-	 	header('Location: logout.php');
-	}
+if (!$login->islogincon() || !$chatClasse->casoAberto($assinaturaId)) {
+	header('Location: logout.php');
+}
 
+$msgs = $chatClasse->getMessages($_SESSION['consultor'], $assinaturaId);
+echo '<script>var tipo = 1</script>';
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +26,7 @@
 	<!-- FIM DOS FAVICONS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="_js/jquery-3.2.1.js"></script>
+	<script src="_js/chatJS.js"></script>
 	<meta charset="utf-8">
 	<title>Chat | Consultoria MEI</title>
 	<link rel="stylesheet" type="text/css" href="_css/chatStyle.css">
@@ -40,42 +42,32 @@
 		<div id="container-menu">
 			<h3>Menu</h3>
 			<a href="inicioConsultor.php"><button class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</button></a>
-			<a href="logout.php"><button id="logout-button">SAIR</button></a>
 		</div>
-		<div id="container-chat">
-			<div class="col-sm-11" id="chat-box" >
-				<div id="control-div" >
-					<?php 
-						//Chama a função showTextOnScreen() para que o texto possa ser enviado e encapsulado em divs
-						$chatClasse->showConsultorTextOnScreen($assinaturaId);
-	    			?>
-	    		</div>
-			</div>
-			<span class="col-xs-11">
-				<form class="" class="" method="post" action="">
+		<form id="mensagens" action="">
+			<div id="container-chat">
+				<div class="col-sm-11" id="chat-box" >
+					<div id="control-div" >
+						<?php foreach($msgs as $key => $msg): ?>
+							<div class="msg <?php echo $msg['tipo'] == 1 ? "cliente" : "consultor" ?>">
+								<?php echo $msg['msg_txt'] ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				<span class="col-xs-11">
 					<div class="col-sm-9">
-						<input class="form-control" id="chat-send" type="text" name="sendText" onkeyup="countChar(this)" autocomplete="off">
-					</div> 
+						<input id="msgAssId" class="form-control" type="hidden" name="assId" value="<?php echo  $assinaturaId; ?>">
+						<input id="textInput" class="form-control" type="text" name="sendText" autocomplete="off" onkeyup="countChar(this)">
+					</div>
 					<div class="btn-group col-sm-3" role="group" aria-label="...">
-						<button class="btn btn-primary col-sm-6" type="submit" name="submit" onclick="">Enviar</button>
+						<button id="submitTxtBtn" class="btn btn-primary col-sm-6" type="submit" name="submit" value="">Enviar</button>
 						<button class="btn btn-basic col-sm-6" type="button" name="bt-updateTextBox" onclick="reloadDiv()">Atualizar</button>
 					</div>
-				</form>
-				<?php 
-					//Verifica se o botão foi clicado e envia oque está na caixa para a função insertText() que está em chatClasses.php
-					if(isset($_POST['submit']) && isset($_POST['sendText'])) {
-						$txt = $_POST['sendText'];
-						$chatClasse->insertConsultorText($txt, $assinaturaId);
-					}
-					if(isset($_POST['submit']) && isset($_POST['sendText'])){
-												
-					}
-				?>
-			</span>
-		</div>
+				</span>
+			</div>
+		</form>
 	</div>
 
-<script src="_js/chatJS.js"></script>
 
 	<!-- glyphicon glyphicon-ok-circle -->
 

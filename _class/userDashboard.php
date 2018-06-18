@@ -35,8 +35,7 @@ class UserDashboard{
 			$stmt2->bindparam(":ass_id", $assId);
 			$stmt2->execute();
 
-			$msgs[$assId] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-			$msgs[$assId] = $msgs[$assId][0];
+			$msgs[$assId] = $stmt2->fetch(PDO::FETCH_ASSOC);
 		}
 
 		// echo '<pre>';
