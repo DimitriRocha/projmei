@@ -1,3 +1,4 @@
+<?php include '_config/debug.php'; ?>
 <?php
 	include('_class/conexao.php');
 	include('_class/chatClasses.php');

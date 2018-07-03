@@ -42,8 +42,8 @@
 		        <li><a href="#novidades">NOVIDADES</a></li> 
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="cadastro"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
-		        <li><a href="entrar"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+		        <li><a href="cadastro.php"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
+		        <li><a href="entrar.php"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
 		      </ul>
 		    </div>
 		  </div>

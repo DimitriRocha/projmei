@@ -1,3 +1,4 @@
+<?php include '_config/debug.php'; ?>
 <?php 
 	require_once '_class/conexao.php';
 	if(isset($_POST['bt_enviar'])){
@@ -6,7 +7,7 @@
 
 		if($login->login($ulog, $upass)){ 
 		?>
-			<script>document.location.href='inicioUser'</script>
+			<script>document.location.href='inicioUser.php'</script>
 		<?php
 		}
 

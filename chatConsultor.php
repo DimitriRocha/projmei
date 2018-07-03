@@ -1,3 +1,4 @@
+<?php include '_config/debug.php'; ?>
 <?php 
 $assinaturaId = $_GET['id'];
 include('_class/conexao.php');

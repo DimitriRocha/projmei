@@ -1,5 +1,6 @@
+<?php include '_config/debug.php'; ?>
 <?php 
-	//require_once '_ref/header.php';
+	require_once '_ref/header.php';
 	require_once '_class/conexao.php';
 
 	if($login->islogin()){

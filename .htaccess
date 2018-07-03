@@ -1,4 +1,5 @@
 RewriteEngine on 
+RewriteCond %{REQUEST_URI} !testes/mei
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
 RewriteRule ^/?(.*)\.php$ /$1 [L,R=301]
 
