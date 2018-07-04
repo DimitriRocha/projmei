@@ -6,9 +6,7 @@
 		$upass = $_POST['pass'];
 
 		if($login->login($ulog, $upass)){ 
-		?>
-			<script>document.location.href='inicioUser.php'</script>
-		<?php
+			echo "<script>document.location.href='inicioUser.php'</script>";
 		}
 
 		else{

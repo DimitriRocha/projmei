@@ -1,10 +1,16 @@
 <?php
 session_start();
 
+// $DB_host = "localhost";
+// $DB_user = "root";
+// $DB_pass = "";
+// $DB_name = "dblogin";
+
 $DB_host = "localhost";
-$DB_user = "root";
-$DB_pass = "";
-$DB_name = "dblogin";
+$DB_user = "consu967_mei";
+$DB_pass = "Kp4v6CpaPu";
+$DB_name = "consu967_bdlogin";
+
 
 try{
     $DB_con = new PDO("mysql:host={$DB_host};dbname={$DB_name}",$DB_user,$DB_pass);
@@ -15,8 +21,6 @@ catch(PDOException $e){
 }
 
 include '_class/loginT.php';
-//include '_class/ps.php';
 
 $login = new LoginT($DB_con);
-//$ps    = new Posave($DB_con);
 ?>

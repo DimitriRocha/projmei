@@ -7,10 +7,6 @@
         header('location: chatIndex');
     }
 
-    echo '<pre>';
-    echo password_hash('123456', PASSWORD_DEFAULT);
-    echo '</pre>';
-
 	if(isset($_POST['btn-enviar'])){
     
 		$uname= $_POST['name'];
